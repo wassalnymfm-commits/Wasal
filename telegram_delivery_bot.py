@@ -36,6 +36,16 @@ from telegram.ext import (
     ConversationHandler,
 )
 
+# Add this right after imports
+import sys
+import traceback
+
+# Better error logging for Render
+def log_exception(exc_type, exc_value, exc_traceback):
+    """Log uncaught exceptions"""
+    logger.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+
+sys.excepthook = log_exception
 # --------------------------- CONFIG ---------------------------
 BOT_TOKEN = os.environ.get("BOT_TOKEN", "8555773876:AAESFpUDxPM1HosaDi-yQckpgk8gC-VWLT8")
 GOOGLE_CREDS_PATH = os.environ.get("GOOGLE_CREDS_PATH", "credentials.json")
