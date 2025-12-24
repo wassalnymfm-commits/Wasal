@@ -1,8 +1,10 @@
 services:
-  - type: web
+  - type: worker
     name: telegram-delivery-bot
     runtime: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: |
+      pip install --upgrade pip
+      pip install -r requirements.txt
     startCommand: python telegram_delivery_bot.py
     envVars:
       - key: BOT_TOKEN
