@@ -1,0 +1,11 @@
+# Secrets
+credentials.json
+*.json
+
+# Python
+__pycache__/
+*.pyc
+.env
+
+# Logs
+bot_debug.log
