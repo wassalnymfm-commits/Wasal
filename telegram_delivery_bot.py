@@ -1090,7 +1090,9 @@ def main():
 
     logger.info("Connecting to Google Sheets...")
     try:
-        SHEET = connect_sheets(GOOGLE_CREDS_PATH, SHEET_ID)
+        #SHEET = connect_sheets(GOOGLE_CREDS_PATH, SHEET_ID)
+        # Change this line in main()
+        SHEET = connect_sheets(os.environ.get("GOOGLE_CREDS_JSON"), SHEET_ID)
     except Exception as e:
         logger.exception("Failed to connect to Google Sheets: %s", e)
         return
