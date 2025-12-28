@@ -13,3 +13,5 @@ services:
         sync: false
       - key: GOOGLE_CREDS_JSON
         sync: false
+      - key: PYTHON_VERSION
+        value: 3.12.3
