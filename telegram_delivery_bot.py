@@ -90,9 +90,20 @@ logger.info("Logger initialized (DEBUG_MODE=%s)", DEBUG_MODE)
 # --------------------------- Google Sheets helpers ---------------------------
 SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapis.com/auth/drive"]
 
-def connect_sheets(creds_path: str, sheet_id: str):
-    logger.debug("Connecting to Google Sheets: %s", creds_path)
-    creds = Credentials.from_service_account_file(creds_path, scopes=SCOPES)
+#def connect_sheets(creds_path: str, sheet_id: str):
+#    logger.debug("Connecting to Google Sheets: %s", creds_path)
+#    creds = Credentials.from_service_account_file(creds_path, scopes=SCOPES)
+#    gc = gspread.authorize(creds)
+#    return gc.open_by_key(sheet_id)
+    
+import json
+
+
+def connect_sheets(creds_json_str: str, sheet_id: str):
+    logger.debug("Connecting to Google Sheets using environment variable")
+    # Parse the JSON string from the environment variable
+    info = json.loads(creds_json_str)
+    creds = Credentials.from_service_account_info(info, scopes=SCOPES)
     gc = gspread.authorize(creds)
     return gc.open_by_key(sheet_id)
 
