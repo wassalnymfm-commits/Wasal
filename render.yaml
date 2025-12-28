@@ -2,6 +2,7 @@ services:
   - type: worker
     name: telegram-delivery-bot
     runtime: python
+    plan: free
     buildCommand: |
       pip install --upgrade pip
       pip install -r requirements.txt
