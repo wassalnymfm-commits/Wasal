@@ -99,10 +99,10 @@ SCOPES = ["https://www.googleapis.com/auth/spreadsheets", "https://www.googleapi
 import json
 
 
-def connect_sheets(creds_json_str: str, sheet_id: str):
+def connect_sheets(GOOGLE_CREDS_JSON: str, sheet_id: str):
     logger.debug("Connecting to Google Sheets using environment variable")
     # Parse the JSON string from the environment variable
-    info = json.loads(creds_json_str)
+    info = json.loads(GOOGLE_CREDS_JSON)
     creds = Credentials.from_service_account_info(info, scopes=SCOPES)
     gc = gspread.authorize(creds)
     return gc.open_by_key(sheet_id)
