@@ -12,3 +12,5 @@ services:
         sync: false
       - key: GOOGLE_CREDS_JSON
         sync: false
+      - key: PYTHON_VERSION
+        value: 3.12.3  # Force 3.12 to avoid the 3.13 bug
