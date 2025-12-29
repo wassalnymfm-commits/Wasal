@@ -19,6 +19,23 @@ from datetime import datetime, timedelta
 import gspread
 from google.oauth2.service_account import Credentials
 
+
+from flask import Flask
+import threading
+
+app_flask = Flask(__name__)
+
+@app_flask.route('/')
+def health_check():
+    return "Bot is running!", 200
+
+def run_flask():
+    # Render provides the PORT as an environment variable
+    port = int(os.environ.get("PORT", 10000))
+    app_flask.run(host='0.0.0.0', port=port)
+
+
+
 from telegram import (
     Update,
     ReplyKeyboardMarkup,
@@ -1170,6 +1187,8 @@ def main():
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_driver_text_for_counter))
 
     logger.info("Bot starting polling...")
+    # In your main() function, start this BEFORE app.run_polling()
+    threading.Thread(target=run_flask, daemon=True).start()
     app.run_polling()
 
 if __name__ == "__main__":

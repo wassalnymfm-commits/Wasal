@@ -1,3 +1,5 @@
+flask
+gunicorn
 python-telegram-bot==20.7
 httpx==0.25.2
 gspread==5.12.4
